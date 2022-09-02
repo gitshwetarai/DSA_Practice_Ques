@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int widthOfBinaryTree(TreeNode* root) {
+        
+         // base case
+    if(root == NULL){
+        return 0;
+    }
+    
+    // queue
+    queue<pair<TreeNode*,int>>q;
+    q.push({root,0});
+    
+    // final ans
+    int ans = 0;
+    
+    // loop
+    while(!q.empty()){
+       
+        int n = q.size();
+        int leftMost, rightMost;
+        
+        // level order traverse
+        for(int i=0;i<n;i++){
+            auto it = q.front();
+            TreeNode* temp = it.first;
+            long curr_id = it.second;
+            q.pop();
+            
+            if(i == 0){
+                leftMost = curr_id;
+            }
+            if(i == n-1){
+                rightMost = curr_id;
+            }
+            
+            if(temp->left){
+                q.push({temp->left,2*curr_id+1});
+            }
+            if(temp->right){
+                q.push({temp->right,2*curr_id+2});
+            }
+        }    
+        ans = max(ans,rightMost-leftMost+1);
+        
+    }
+    return ans;
+    
+}
+};
