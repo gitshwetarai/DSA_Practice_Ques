@@ -2,7 +2,7 @@ class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
         if(head == NULL)
-                return head;
+                return NULL;
         int count = 0;
         ListNode *curr;
         for(curr = head; curr!=NULL; curr=curr->next)
