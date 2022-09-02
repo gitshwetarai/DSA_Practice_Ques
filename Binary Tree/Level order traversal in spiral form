@@ -1,0 +1,39 @@
+vector<int> findSpiral(Node *root)
+{
+    //Your code here
+    vector<int> result;
+    queue<Node*> q;
+    q.push(root);
+    bool leftToRight = false;
+    
+    if(root==NULL)
+        return result;
+    
+    while(!q.empty())
+    {
+        int size = q.size();
+        
+        for(int i=0; i<size; i++)
+        {
+            Node *curr = q.front();
+            q.pop();
+            // int index = (leftToRight)? i : (size-1-i);  //This is good for vector of vectors.
+            
+            if(leftToRight)
+                result.push_back(curr->data);
+                
+            else
+                result.insert(result.end()-i, curr->data);
+            
+            if(curr->left != NULL)
+                q.push(curr->left);
+            if(curr->right != NULL)
+                q.push(curr->right);
+        }
+        
+        leftToRight = !leftToRight;
+    }
+    
+    return result;
+    
+}
