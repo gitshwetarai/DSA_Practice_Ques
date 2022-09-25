@@ -1,0 +1,18 @@
+class Solution {
+public: 
+    bool isValidBST(TreeNode* root, long min = LONG_MIN, long max = LONG_MAX){ 
+        
+        if(root == NULL)
+           return true;
+       if((root->val >= max) || (root->val <= min))
+           return false;
+       else
+       {
+           bool leftTree = isValidBST(root->left,min,root->val);
+           bool rightTree = isValidBST(root->right,root->val,max);
+           return leftTree &&  rightTree;
+       }
+           
+    }
+    
+};
