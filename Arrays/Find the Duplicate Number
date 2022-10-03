@@ -1,0 +1,32 @@
+int findDuplicate(vector<int>& nums) {
+        // sol. 1.-->Brute force, T:O(N logN +N) , S:O(1)
+
+        // sort(nums.begin(), nums.end());
+        // int i;
+        // for(i=0; i<nums.size()-1; i++)
+        // {
+        //     if(nums[i] == nums[i+1])
+        //     {
+        //         break;
+        //     }
+        // }
+
+        // return nums[i];
+
+        // spl. 2.: --> using frequency array  OR Unsorted_map.  T:O(N) , S:O(N)
+        int n = nums.size();
+        int freq[n + 1];
+
+        for(int i=0; i<n; i++)
+        {
+            if(freq[nums[i]] == 0)
+                freq[nums[i]] = 1;
+
+            else
+                break;
+        }
+
+        return nums[i];
+    }
+    
+    
