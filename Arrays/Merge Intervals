@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        sort(intervals.begin(), intervals.end());
+        vector<vector<int>> ans;
+        vector<int> v;
+
+        for(int i=0; i<intervals.size(); i++)
+        {
+            if(ans.empty() || ans.back()[1] < intervals[i][0])
+            {
+                // v.push_back(intervals[i][0]);
+                // v.push_back(intervals[i][1]);
+                vector < int > v = {intervals[i][0], intervals[i][1]};
+                ans.push_back(v);
+                // v.clear();
+            }
+
+            else
+            {
+                ans.back()[1] = max(ans.back()[1], intervals[i][1]);
+            }
+        }
+        return ans;
+    }
+};
+
+
+Time Complexity: O(NlogN) + O(N). O(NlogN) for sorting and O(N) for traversing through the array.
+
+Space Complexity: O(N) to return the answer of the merged intervals.
