@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        
+        // sol.1 --> using two loops, T:O(n^2), S:O(1)
+
+        // sol.2 --> optimal soln,  T:O(n), S:O(1)
+
+        int maxProfit = 0;
+        int minPrice = INT_MAX;
+        int diff = 0;
+
+        for(int i=0; i<prices.size(); i++)
+        {
+            minPrice = min(minPrice, prices[i]);
+            diff = prices[i] - minPrice;
+            maxProfit = max(maxProfit, diff);
+        }
+        
+        return maxProfit;
+
+    }
+};
+
+
+Time complexity: O(n)
+
+Space Complexity: O(1)
