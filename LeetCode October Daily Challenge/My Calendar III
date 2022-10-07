@@ -1,0 +1,24 @@
+class MyCalendarThree {
+public:
+    map<int, int> m;
+    MyCalendarThree() {
+        
+    }
+    
+    int book(int start, int end) {
+
+        int sum = 0;
+        int cur_sum = 0;
+
+        m[start]++;
+        m[end]--;
+
+        for(auto it : m)
+        {
+            cur_sum += it.second;
+            sum = max(sum, cur_sum);
+        }
+
+        return sum;
+    }
+};
