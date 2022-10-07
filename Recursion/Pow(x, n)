@@ -1,0 +1,29 @@
+//Recursion
+
+class Solution {
+public:
+    double myPow(double x, int n) {
+    
+        if(n == 0)
+            return 1.0;
+
+        if(n == 1)
+            return x;
+
+        long long nm = n;
+        if(nm < 0)
+        {
+            x = 1/x;
+            nm = -nm;
+        }
+
+        double ans = myPow(x, nm/2);
+
+        if(nm%2 == 0)
+            return ans * ans;
+
+        else
+            return x * ans * ans;
+
+    }
+};
