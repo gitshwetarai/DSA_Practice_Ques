@@ -18,7 +18,6 @@ public:
             cur_sum += it.second;
             sum = max(sum, cur_sum);
         }
-
         return sum;
     }
 };
