@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int util(vector<int>& jd, int d,int ind,vector<vector<int>> &dp)
+    {
+        if(ind>=jd.size() && d>0)
+            return 1e6;
+        if(d==1)
+        {
+            int maxi = jd[ind];
+            for(int i=ind+1;i<jd.size();i++)
+                maxi = max(maxi,jd[i]);
+            return maxi;
+        }
+        if(dp[ind][d]!=-4)
+            return dp[ind][d];
+        
+        int ans = 1e6,maxi=INT_MIN;
+        
+        for(int i=ind;i<jd.size();i++)
+        {
+            maxi = max(maxi,jd[i]);
+            if(util(jd,d-1,i+1,dp)==-1)
+                continue;
+            ans = min(ans,maxi + util(jd,d-1,i+1,dp));
+        }
+        return dp[ind][d] = ans==1e6?-1:ans;
+    }
+    int minDifficulty(vector<int>& jobDifficulty, int d) {
+        // The main thing here is to do the non-empty partitions of d days
+        vector<vector<int>> dp(jobDifficulty.size()+1,vector<int>(d+1,-4));
+        return util(jobDifficulty,d,0,dp);
+    }
+};
