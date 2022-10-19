@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        map<string, int> mp;
+        for(int i = 0; i < words.size(); i++)
+            mp[words[i]]++;
+        vector<pair<string, int>> pairs;
+        for(auto &x : mp)
+            pairs.push_back(make_pair(x.first, x.second));
+        sort(pairs.begin(), pairs.end(), [](const pair<string, int> &a, const pair<string, int> &b){
+            if(a.second == b.second)
+            {
+                for(int i = 0; i < a.first.size() && i < b.first.size(); i++)
+                {
+                    if(a.first[i] == b.first[i]) continue;
+                    if(a.first[i] < b.first[i]) return true;
+                    else return false;
+                }
+                return false;
+            }
+            return a.second > b.second;
+        });
+        vector<string>res;
+        for(int i = 0; i < k && i < pairs.size(); i++)
+            res.push_back(pairs[i].first);
+        return res;
+    }
+};
