@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> findErrorNums(vector<int>& nums){
+        
+        sort(nums.begin(),nums.end());
+        long long sum=0;
+        int n = nums.size();
+        int num;
+        for(int i=0;i<n;i++)
+        {
+            if(i-1>=0 && nums[i]==nums[i-1])
+            {
+                num = nums[i];
+                continue;
+            }
+            sum += nums[i];
+        }
+        
+        int num2 = n*(n+1)/2-sum;
+        return {num,num2};
+    }
+};
