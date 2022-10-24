@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int count(vector<int> &freq)
+    {
+        int temp=0;
+        for(int i=0;i<26;i++)
+            if(freq[i]>0)
+                temp++;
+        return temp;
+    }
+    int util(vector<string>& arr,int ind,vector<int> freq)
+    {
+        if(ind==arr.size())
+            return count(freq);
+        int ans = 0;
+        //exclude the current string
+        ans = max(ans,util(arr,ind+1,freq));
+        //include the current string
+        for(auto x:arr[ind])
+        {
+            if(freq[x-'a']>0)
+                return ans;
+            freq[x-'a']++;
+        }
+        return max(ans,util(arr,ind+1,freq));
+    }
+public:
+    int maxLength(vector<string>& arr) {
+        vector<int> freq(26,0);
+        return util(arr,0,freq);
+    }
+};
