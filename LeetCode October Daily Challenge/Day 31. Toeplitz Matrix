@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool isToeplitzMatrix(vector<vector<int>>& matrix) {
+        
+        int row = matrix.size();
+        int colm = matrix[0].size();
+
+        for(int i=1; i<row; i++)
+        {
+            for(int j=0; j<colm; j++)
+            {
+                if(j==0)
+                    continue;
+
+                if(matrix[i-1][j-1] != matrix[i][j])
+                    return false;
+            }
+        }
+
+        return true;
+    }
+};
